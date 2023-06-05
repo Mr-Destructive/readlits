@@ -3,7 +3,7 @@
 import Books from '../lib/components/Books.svelte';
 import SignUp from '../lib/components/SignUp.svelte';
 </script>
-<div class="container h-full mx-auto flex justify-center items-center">
+<div class="container h-full mx-auto justify-center items-center">
 <div class="flex flex-col">
     <h2>Books</h2>
     <SignUp/>

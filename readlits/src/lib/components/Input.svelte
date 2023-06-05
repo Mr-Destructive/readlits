@@ -14,11 +14,11 @@
 <label for={id} class="mb-2">
   <span>{label}</span>
   {#if type === 'textarea'}
-    <textarea id={id} {...$$restProps}></textarea>
+    <textarea id={id} name={id} {...$$restProps}></textarea>
   {:else if type === 'number'}
-    <input type="number" id={id} {...$$restProps} />
+    <input type="number" id={id} name={id} {...$$restProps} />
   {:else}
-    <input type="text" id={id} {...$$restProps} />
+    <input type="text" id={id} name={id} {...$$restProps} />
   {/if}
 </label>
 

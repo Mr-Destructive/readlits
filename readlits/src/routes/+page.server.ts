@@ -36,21 +36,28 @@ export const actions: Actions = {
             console.log(error);
         }
     },
+    book: async ({ locals, request }) => {
+      const bookId = request.params.id;
+      const databases = new Databases(locals.client);
+      const book = await databases.getDocument('books', bookId);
+      console.log(book);
+      return {
+        props: { book }
+      };
+    },
     addbook: async ({ locals, request}) => {
         const body = Object.fromEntries(await request.formData());
-        const databases = new Databases(locals.client);
-        console.log(body)
+        const databases = locals.database;
         const book = {
             'name': body.name as string, 
             'description': body.description as string, 
             'rating': body.rating as number,
-            'author': body.author as string
+            'Author': body.author as string
         };
         const documentId = ID.unique();
-        console.log(documentId)
         console.log(book)
         try {
-            const newBook = await databases.createDocument('6467a2917aaf8fd17198', '6467a33ecbefa946e984', documentId, {book});
+            const newBook = await databases.createDocument(locals.database_id, locals.book_collection, documentId, book);
             console.log(newBook);
         } catch (error) {
             console.log(error);
