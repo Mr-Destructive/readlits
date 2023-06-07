@@ -21,7 +21,6 @@ const client = new Client()
   } catch (error) {
     console.error(error);
   }
-  let selectedBook = books[0];
 
 </script>
 
@@ -33,7 +32,7 @@ const client = new Client()
       <div class="flex flex-col rounded-lg hover:shadow-lg transform transition duration-500 hover:scale-105">
       <a href="/books/{book.$id}">
         <div class="relative">
-          <img class="w-full h-64 object-cover rounded-t-lg" src={book.cover ? book.cover_image : 'https://placehold.it/150x150'} alt={book.name} />
+          <img class="w-full h-64 object-cover rounded-t-lg" src={book.cover_image ? book.cover_image : 'https://placehold.it/150x150'} alt={book.name} />
           <div class="absolute right-0 top-0 px-2 py-1 bg-gray-800 rounded-bl-lg text-white">
             <span class="text-sm">{book.rating}</span>
             <svg viewBox="0 0 20 20" fill="currentColor" class="star w-4 h-4 inline-block">
@@ -52,9 +51,6 @@ const client = new Client()
         </div>
         </a>
       </div>
-      {#if selectedBook === book }
-        <Book />
-      {/if}
     {/each}
   {/if}
 </div>

@@ -9,12 +9,17 @@ export const load: PageLoad = async ({ params }) => {
   const databases = new Databases(client);
   try {
     const book = await databases.getDocument('6467a2917aaf8fd17198', '6467a33ecbefa946e984', title);
-    const reviews = await databases.getDocument('6467a2917aaf8fd17198', '6467a33ecbefa946e984', );
+    const reviews = await databases.listDocuments(
+    '6467a2917aaf8fd17198',
+    '6472219e144e1f6135ea'
+    );
     return {
       title: book.name,
       content: book.description,
       author: book.Author,
-      rating: book.rating
+      rating: book.rating,
+      cover_image: book.cover_image,
+      genre: book.genre,
     };
   } catch (err) {
     console.log(err);

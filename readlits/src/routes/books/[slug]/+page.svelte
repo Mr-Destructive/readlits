@@ -1,12 +1,14 @@
 <script lang="ts">
+    import Reviews from '$lib/components/Reviews.svelte';
     import type { PageData } from './$types';
     export let data: PageData;
 </script>
 
-<h1 class="text-4xl font-bold mb-4">{daa.title}</h1>
+<a href='/books'>Books</a>
+<h1 class="text-4xl font-bold mb-4">{data.title}</h1>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="aspect-w-2 aspect-h-3">
-    <img class="object-cover rounded-lg shadow-lg" src={data.coverUrl} alt={book.title} />
+    <img class="object-cover rounded-lg shadow-lg" src={data.cover_image} alt={data.title} />
   </div>
   <div class="flex flex-col">
     <h2 class="text-2xl font-semibold mb-2">{data.author}</h2>
@@ -28,8 +30,8 @@
     <div>
       <h4 class="text-md font-semibold mb-2">Reviews:</h4>
         <ul class="list-disc">
+        <Reviews/>
         </ul>
-        <p class="text-gray-600">No reviews yet. Be the first to leave one!</p>
     </div>
   </div>
 </div>
