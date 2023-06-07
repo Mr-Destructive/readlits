@@ -23,6 +23,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"appwrite": "^11.0.0"
+		"appwrite": "^11.0.0",
+		"svelte-routing": "^1.9.0"
 	}
 }

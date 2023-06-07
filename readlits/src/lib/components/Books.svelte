@@ -25,22 +25,36 @@ const client = new Client()
 
 </script>
 
-<h2 class="text-xl font-semibold mb-4">Book List</h2> 
-<ul id="books" class="list-disc flex flex-wrap -mx-4">
-{#if books}
-{#each books as book}
-  <li class="mb-4 px-11 flex-1/2 h-full">
-    <a href="#/book" on:click={() => selectedBook = book}>
-      <img class="w-16 h-16 rounded-full object-cover" src="https://placehold.it/150x150" alt="Book cover">
-      <div class="h-full flex flex-col justify-between">
-        <h5 class="text-base font-semibold mb-2">{book.name}</h5>
-        <div class="text-sm text-gray-500">{book.rating}</div>
+<h2 class="text-3xl font-bold mb-8">Book List</h2> 
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {#if books}
+    {#each books as book}
+      <div class="flex flex-col rounded-lg hover:shadow-lg transform transition duration-500 hover:scale-105">
+      <a href="/books/{book.$id}">
+        <div class="relative">
+          <img class="w-full h-64 object-cover rounded-t-lg" src={book.cover ? book.cover_image : 'https://placehold.it/150x150'} alt={book.name} />
+          <div class="absolute right-0 top-0 px-2 py-1 bg-gray-800 rounded-bl-lg text-white">
+            <span class="text-sm">{book.rating}</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" class="star w-4 h-4 inline-block">
+              <path
+                fill-rule="evenodd"
+                d="M10 1.583l2.65 5.369 5.904.858-4.275 4.175.99 5.778L10 15.525l-5.269 2.84.99-5.778-4.275-4.175 5.904-.858L10 1.583z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="p-4 border border-t-0 rounded-b-lg flex-1 flex flex-col">
+          <h3 class="text-xl font-bold mb-2">{book.name}</h3>
+          <p class="text-gray-700 mb-3">{book.Author}</p>
+          <p class="text-gray-600 text-sm flex-1">{book.description}</p>
+        </div>
+        </a>
       </div>
-    </a>
-    {#if selectedBook === book }
-      <Book />
-    {/if}
-  </li> 
-{/each}
-{/if}
-</ul>
+      {#if selectedBook === book }
+        <Book />
+      {/if}
+    {/each}
+  {/if}
+</div>
