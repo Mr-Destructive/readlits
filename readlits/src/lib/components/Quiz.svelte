@@ -3,7 +3,6 @@
   import Input from './Input.svelte';
 
   let isPopupOpen = false;
-  const dispatch = createEventDispatcher();
 
   function openPopup() {
     isPopupOpen = true;
@@ -16,15 +15,11 @@
 
 <div class="container h-full mx-auto flex justify-center items-center">
   <div class="flex flex-col">
-    <button on:click={openPopup}>SignUp</button>
     {#if isPopupOpen}
       <div class="overlay" style="z-index: 999;">
         <div class="popup">
-            <form action="/?/register" method="POST">
-                <Input class="block text-sm font-medium text-gray-700" id="name" label="Name" type="text" />
-                <Input class="block text-sm font-medium text-gray-700" id="description" label="Email" type="email" />
-                <Input class="block text-sm font-medium text-gray-700" id="password" label="Password" type="password" />
-                <button type="submit" class="mt-4 w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md focus:outline-none focus:shadow-outline-indigo">Signup</button>
+            <form action="/?/quiz" method="POST">
+                <button type="submit" class="mt-4 w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md focus:outline-none focus:shadow-outline-indigo">Attempt</button>
                 <button class="close-button ml-auto" on:click={closePopup}>x</button>
           </form>
         </div>
@@ -57,4 +52,4 @@
     border: none;
     cursor: pointer;
   }
-</style>.
+</style>

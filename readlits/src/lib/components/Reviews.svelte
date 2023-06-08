@@ -1,10 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import { Client, Databases } from 'appwrite';
+  import { Client, Databases, Query } from 'appwrite';
   import Review from './Review.svelte';
 
   let reviews: Review[] = [];
+  export let bookId: string;
 
   const client = new Client()
     .setEndpoint('http://127.0.0.1:8001/v1')
@@ -22,11 +23,14 @@ const formatDate = (dateStr) => {
 
   onMount(() => {
     try {
-      promise = databases.listDocuments('6467a2917aaf8fd17198', '6472219e144e1f6135ea');
+    promise = databases.listDocuments('6467a2917aaf8fd17198', '6472219e144e1f6135ea',
+        [
+          Query.equal('book', bookId)
+        ]
+    );
       promise
         .then(function (response) {
           reviews = response.documents;
-          console.log(reviews)
         })
         .catch(function (error) {
           console.log(error);
@@ -35,7 +39,6 @@ const formatDate = (dateStr) => {
       console.error(error);
     }
   });
-  console.log(reviews)
 </script>
 {#await promise}
   <p>Loading reviews...</p> 

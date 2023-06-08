@@ -20,6 +20,7 @@ export const load: PageLoad = async ({ params }) => {
       rating: book.rating,
       cover_image: book.cover_image,
       genre: book.genre,
+      id: book.$id,
     };
   } catch (err) {
     console.log(err);

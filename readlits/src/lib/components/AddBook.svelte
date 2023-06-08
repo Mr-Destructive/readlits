@@ -18,7 +18,7 @@
   <div class="flex flex-col">
     <button on:click={openPopup}>Add Book</button>
     {#if isPopupOpen}
-      <div class="overlay">
+      <div class="overlay" style="z-index: 999;">
         <div class="popup">
             <form action="/?/addbook" method="POST">
                 <Input class="block text-sm font-medium text-gray-700" id="name" label="Name" type="text" />

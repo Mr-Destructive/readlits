@@ -1,7 +1,18 @@
-<script lang="ts">
-    import Reviews from '$lib/components/Reviews.svelte';
-    import type { PageData } from './$types';
-    export let data: PageData;
+<script lang='ts'>
+  import Reviews from '$lib/components/Reviews.svelte';
+  import Quiz from '$lib/components/Quiz.svelte';
+  import type { PageData } from './$types';
+
+  export let data: PageData;
+  let showQuiz = false;
+
+  function toggleQuizModal() {
+    showQuiz = true;
+  }
+
+  function hideQuizModal() {
+    showQuiz = false;
+  }
 </script>
 
 <a href='/books'>Books</a>
@@ -28,14 +39,19 @@
       </div>
     </div>
     <div>
+      <button
+        class='bg-[#79ffff]'
+        on:click={() => toggleQuizModal()}
+      >
+        Take Quiz
+      </button>
+    <button on:click={toggleQuizModal}>Take Quiz</button>
       <h4 class="text-md font-semibold mb-2">Reviews:</h4>
-        <ul class="list-disc">
-        <Reviews/>
-        </ul>
+      <ul class="list-disc">
+        <Reviews bookId={data.id} />
+      </ul>
     </div>
   </div>
 </div>
 
-
-<h1>{data.title}</h1>
-<div>{@html data.content}</div>
+<Quiz show={showQuiz} on:cancel={() => hideQuizModal()} on:submit={() => hideQuizModal()} />

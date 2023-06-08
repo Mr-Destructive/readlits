@@ -17,12 +17,12 @@
   </div>
 </nav>
     <Router>
+        <SignUp/>
+        <AddBook/>
     </Router>
 <div class="container h-full mx-auto justify-center items-center">
 <div class="flex flex-col">
     <h2>Books</h2>
-    <SignUp/>
     <Books />
-    <AddBook/>
 </div>
 </div>
