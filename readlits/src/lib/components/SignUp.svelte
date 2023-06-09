@@ -6,11 +6,11 @@
   const dispatch = createEventDispatcher();
 
   function openPopup() {
-    isPopupOpen = true;
-  }
-
-  function closePopup() {
+    if (isPopupOpen === true){
     isPopupOpen = false;
+    } else{
+      isPopupOpen = true;
+    }
   }
 </script>
 
@@ -18,14 +18,14 @@
   <div class="flex flex-col">
     <button on:click={openPopup}>SignUp</button>
     {#if isPopupOpen}
-      <div class="overlay" style="z-index: 999;">
+      <div class="overlay" style="z-index: 3;">
         <div class="popup">
             <form action="/?/register" method="POST">
-                <Input class="block text-sm font-medium text-gray-700" id="name" label="Name" type="text" />
-                <Input class="block text-sm font-medium text-gray-700" id="description" label="Email" type="email" />
-                <Input class="block text-sm font-medium text-gray-700" id="password" label="Password" type="password" />
+                <Input id="name" label="Name" type="text" />
+                <Input id="email" label="Email" type='email' />
+                <Input id="password" label="Password" type='password' />
                 <button type="submit" class="mt-4 w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md focus:outline-none focus:shadow-outline-indigo">Signup</button>
-                <button class="close-button ml-auto" on:click={closePopup}>x</button>
+                <button class="close-button ml-auto" on:click={openPopup}>x</button>
           </form>
         </div>
       </div>
@@ -57,4 +57,4 @@
     border: none;
     cursor: pointer;
   }
-</style>.
+</style>

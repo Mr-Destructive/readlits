@@ -24,6 +24,12 @@ const client = new Client()
 
 </script>
 
+<style>
+  .star {
+    color: #fbbf24;
+  }
+</style>
+
 <h2 class="text-3xl font-bold mb-8">Book List</h2> 
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -54,3 +60,4 @@ const client = new Client()
     {/each}
   {/if}
 </div>
+

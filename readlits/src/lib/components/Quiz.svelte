@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import Input from './Input.svelte';
-
+    
   let isPopupOpen = false;
 
   function openPopup() {

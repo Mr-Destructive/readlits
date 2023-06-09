@@ -1,5 +1,5 @@
 import type { Handle } from "@sveltejs/kit";
-import { Client, Databases } from "appwrite";
+import { Account, Client, Databases } from "appwrite";
 
 export const handle: Handle = async ({ event, resolve }) => {
     const client = new Client()
@@ -16,5 +16,10 @@ export const handle: Handle = async ({ event, resolve }) => {
     event.locals.quiz_result_collection= '647222075e1b0254b10e';
     event.locals.bookling_collection = '64722a605a4fd6bd4858';
 
+    const account = new Account(client);
+    try{
+        event.locals.account = await account.get();
+    } catch(err){
+    }
     return resolve(event);
 };

@@ -62,5 +62,35 @@ export const actions: Actions = {
         } catch (error) {
             console.log(error);
         }
+    },
+    login: async ({ locals, request, cookies }) => {
+        const body = Object.fromEntries(await request.formData());
+        console.log(locals);
+        console.log(body);
+        let authUser;
+        const account =  new Account(locals.client)
+        try {
+            const session = await account.createEmailSession(body.email as string, body.password as string);
+            console.log(session);
+            const currDate = new Date();
+            const sessionExp = new Date(session.expire);
+            const diff = sessionExp.getTime() - currDate.getTime() / 1000;
+
+            cookies.set("appwrite-session", session.$id, {
+                path: "/",
+                httpOnly: true,
+                expires: new Date(sessionExp),
+            });
+            
+            
+        } catch(err){
+            console.log(err);
+
+        }
+        console.log(authUser);
     }
+
+
+
+
 };
