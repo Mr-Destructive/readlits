@@ -1,12 +1,20 @@
 from pathlib import Path
 
+import environ
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+    ALLOWED_HOSTS=(list, []),
+    DEBUG=(bool, False),
+)
+environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = "django-insecure-zwuafx7^5(!l*vvh&@5sk0l7r%t4^1fjg*q1#vvek@+&7_9nc1"
 
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 
 INSTALLED_APPS = [
@@ -80,7 +88,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = "static/"
 
