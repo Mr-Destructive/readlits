@@ -7,6 +7,12 @@
 asgiref==3.7.2
     # via django
 django==4.2.4
+    # via
+    #   -r requirements.in
+    #   django-appconf
+django-appconf==1.0.5
+    # via django-compressor
+django-compressor==4.4
     # via -r requirements.in
 django-environ==0.10.0
     # via -r requirements.in
@@ -14,6 +20,12 @@ gunicorn==21.2.0
     # via -r requirements.in
 packaging==23.1
     # via gunicorn
+pytailwindcss==0.2.0
+    # via -r requirements.in
+rcssmin==1.1.1
+    # via django-compressor
+rjsmin==1.2.1
+    # via django-compressor
 sqlparse==0.4.4
     # via django
 typing-extensions==4.7.1

@@ -10,7 +10,7 @@ env = environ.Env(
 )
 environ.Env.read_env(BASE_DIR / ".env")
 
-SECRET_KEY = "django-insecure-zwuafx7^5(!l*vvh&@5sk0l7r%t4^1fjg*q1#vvek@+&7_9nc1"
+SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "compressor",
+    "readlits.accounts",
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,7 @@ DATABASES = {
     }
 }
 
+# Auth
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -80,6 +83,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "accounts.User"
 
 LANGUAGE_CODE = "en-us"
 
@@ -89,6 +93,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
+# STATICFILES_DIRS = [
+#    BASE_DIR / "readlits" / "static",
+# ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Compressor
+COMPRESS_ROOT = BASE_DIR / "readlits" / "static"
+
+COMPRESS_ENABLED = True
+# STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)

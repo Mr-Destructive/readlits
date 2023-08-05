@@ -1,3 +1,5 @@
 Django==4.2.4
+django-compressor==4.4
 django-environ==0.10.0
 gunicorn==21.2.0
+pytailwindcss==0.2.0

@@ -12,3 +12,13 @@ skip_covered = true
 [tool.isort]
 profile = "black"
 src_paths = ["readlits"]
+
+[tool.pytest.ini_options]
+addopts = "--no-migrations --disable-socket"
+DJANGO_SETTINGS_MODULE = "project.testing_settings"
+filterwarnings = [
+    "error",
+]
+testpaths = [
+    "readlits",
+]
