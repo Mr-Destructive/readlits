@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DEBUG=(bool, False),
+    EMAIL_BACKEND=(str, "django.core.mail.backends.console.EmailBackend"),
     ACCOUNT_DEFAULT_HTTP_PROTOCOL=(str, "https"),
 )
 environ.Env.read_env(BASE_DIR / ".env")
@@ -28,8 +29,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     "compressor",
     "readlits.accounts",
+    "readlits.core",
 ]
 
 MIDDLEWARE = [
@@ -47,7 +50,7 @@ ROOT_URLCONF = "project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -91,6 +94,12 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+LOGIN_REDIRECT_URL = "/"
+
+
+# Emails
+EMAIL_BACKEND = env("EMAIL_BACKEND")
+
 
 LANGUAGE_CODE = "en-us"
 
@@ -101,18 +110,18 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "static/"
-# STATICFILES_DIRS = [
-#    BASE_DIR / "readlits" / "static",
-# ]
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Compressor
-COMPRESS_ROOT = BASE_DIR / "readlits" / "static"
-
+COMPRESS_ROOT = BASE_DIR / "static"
+COMPRESS_URL = STATIC_URL
 COMPRESS_ENABLED = True
-# STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
+STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 
 # SITES
 SITE_ID = 1

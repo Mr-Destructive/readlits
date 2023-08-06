@@ -1,0 +1,8 @@
+Welcome to Readlits!
+
+To become a readling, you need to confirm the email address you used to sign up.
+
+Go to {{ activate_url }}
+
+Regards,
+Meet from Readlits
