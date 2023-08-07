@@ -37,6 +37,8 @@ oauthlib==3.2.2
     # via requests-oauthlib
 packaging==23.1
     # via gunicorn
+psycopg2-binary==2.9.7
+    # via -r requirements.in
 pycparser==2.21
     # via cffi
 pyjwt[crypto]==2.8.0
