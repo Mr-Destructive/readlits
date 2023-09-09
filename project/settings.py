@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "compressor",
     "readlits.accounts",
+    "readlits.books",
     "readlits.core",
 ]
 
