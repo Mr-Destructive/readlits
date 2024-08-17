@@ -1,6 +1,18 @@
 from appwrite.client import Client
+from youtube_transcript_api import YouTubeTranscriptApi
 import os
 
+def subtitle_extract(url):
+  url = url.split('/watch?v=')[1]
+  subtitle_text = ""
+  subtitles = YouTubeTranscriptApi.get_transcript(url)
+  try:
+    for subtitle in subtitles:
+        subtitle_text += " " + subtitle.get("text", "")
+    return subtitle_text
+  except Exception as e:
+    print(e)
+    return ""
 
 # This is your Appwrite function
 # It's executed each time we get a request
@@ -26,12 +38,14 @@ def main(context):
         # `ctx.res.send()` dispatches a string back to the client
         return context.res.send("Hello, World!")
 
+    req = context.req
+    context.log(req.payload)
+    subtitles = subtitle_extract(req.payload)
+    context.log(subtitles)
+
     # `ctx.res.json()` is a handy helper for sending JSON
     return context.res.json(
         {
-            "motto": "Build like a team of hundreds_",
-            "learn": "https://appwrite.io/docs",
-            "connect": "https://appwrite.io/discord",
-            "getInspired": "https://builtwith.appwrite.io",
+            "subtitles": subtitles
         }
     )
