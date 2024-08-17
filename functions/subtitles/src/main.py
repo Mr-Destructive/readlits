@@ -1,6 +1,8 @@
+import json
+import os
+
 from appwrite.client import Client
 from youtube_transcript_api import YouTubeTranscriptApi
-import os
 
 def subtitle_extract(url):
   url = url.split('/watch?v=')[1]
@@ -39,8 +41,9 @@ def main(context):
         return context.res.send("Hello, World!")
 
     req = context.req
-    context.log(req.payload)
-    subtitles = subtitle_extract(req.payload)
+    body = json.dumps(context.req.body)
+    context.log(body)
+    subtitles = subtitle_extract(body)
     context.log(subtitles)
 
     # `ctx.res.json()` is a handy helper for sending JSON
